@@ -1,0 +1,605 @@
+html {
+    background-color: #a3d7e0;
+    --scrollbarBG: #CFD8DC;
+    --thumbBG: #90A4AE;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    margin: 0; /* 重置默认的 body margin */
+    scrollbar-width: thin;
+    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+
+body:not(#parent-container) {
+    background: linear-gradient(0deg, #a3d7e0, #daeff2)}
+
+/*#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+}*/
+
+.spinner-grow {
+    margin: 0 25px;
+}
+
+.custom-spinner {
+    animation: spinner-border .5s linear infinite;
+}
+
+#loadingScreen {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 1000; /* 確保它在其他元素上方 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#loadingScreen2 {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 1000; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-text {
+    margin-left: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#parent-container {
+    display: flex;
+    width: 80%;
+    height: calc(100vh - 40px);
+    margin: 20px 0;
+}
+
+@media (max-width: 780px){
+    #parent-container {
+        display: flex;
+        width: 90%;
+        height: calc(100vh - 40px);
+        margin: 20px 0;
+    }
+}
+
+#options {
+    width: 300px;
+    flex-shrink: 0;
+    display: flex;
+    overflow-y: auto;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f5f5f5;
+    flex-direction: column;
+    align-items: center; 
+    position: relative;
+}
+
+@media (max-width: 780px) {
+    #options {
+        display: none;
+    }
+}
+
+#option button:hover {
+    background-color: #daeff2;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    padding: 5px;
+    width: 100%;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+    background-color: #dcdcdc; /*c7e7ec*/
+    transition: box-shadow 0.3s ease-in-out; 
+    border-radius: 5px;
+    align-items: center;
+}
+
+.box:hover {
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/*.separator {
+    height: 1px;
+    background-color: black;
+    width: 100%;
+}*/
+
+#data  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#redirbutton{
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: transparent;
+    justify-content: center;
+    border-radius: 5px;
+    align-self: center;
+}
+
+#redirbutton img {
+    display: block;
+    width: 50px;
+    height: 50px;
+    cursor: pointer; /* 使得鼠標在圖片上顯示為點擊狀態 */
+}
+
+#subbutton{
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    background-color: #fcb790;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#delbutton{
+    display: flex;
+    margin-top: 10px;
+    background-color: #f44336;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#up  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#up2  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#chatbot-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin: 0 auto;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#chatbot-container button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+#chatbot-container button:hover {
+    background-color: #daeff2;
+}
+
+#header {
+    text-shadow: 0 0 5px #434343, 0 0 5px #434343, 0 0 5px #434343, 0 0 5px #434343;
+    background: linear-gradient(30deg, #7ec7d4, #c7e7ec);
+    color: #ffffff;
+    padding: 35px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+    justify-content: space-between;
+    display: flex;
+}
+
+@media (max-width: 780px) {
+    #header {
+        text-shadow: 0 0 5px #434343, 0 0 5px #434343, 0 0 5px #434343, 0 0 5px #434343;
+        background: linear-gradient(30deg, #7ec7d4, #c7e7ec);
+        color: #ffffff;
+        padding: 5px;
+        font-size: 1em;
+        font-weight: bold;
+        text-align: center;
+        border-radius: 4px;
+        justify-content: space-between;
+        display: flex;
+    }
+}
+
+.row-wrap {
+  text-align: center;
+  float: left;
+  margin: 0 5px;
+}
+
+.row-middle {
+  font-size: 40px;
+}
+
+#chatbot {
+    background-color: #f5f5f5;
+    border: 1px solid #eef1f5;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    border-bottom: 0px;
+    height: 100%;
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+#preset-questions {
+    display: inline-block;
+    flex-direction: column;
+    justify-content: flex-end;
+/*    margin-left: 5%;
+    transition: opacity 0.5s; /* 這邊的 0.5s 可以根據你的需要調整，它代表過渡的持續時間 
+    opacity: 1;*/
+}
+
+#preset-questions button {   
+/*    margin: 3px;*/
+    border: none;        /* 移除邊框 */
+    background: none;    /* 移除背景 */
+    padding: 0.25rem 1rem; /* 設定內部的填充 */
+    border-bottom: 1px solid #ccc;  /* 增加底部邊框 */
+}
+
+#preset-questions button:last-child {
+    border-bottom: none;     /* 移除最後一個按鈕的底部邊框 */
+}
+
+#chatlog {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 780px) {
+    #chatlog {
+        flex-grow: 1;
+        overflow-y: auto;
+        padding: 0;
+        padding-top: 1  0px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+#chatlog p {
+    margin: 0;
+}
+
+.message-avatar {
+    width: 40px; 
+    height: 40px;
+    margin: 0 5px;
+}
+
+@keyframes message-fade-in {
+from {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+to {
+  opacity: 1;
+  transform: translateY(0);
+}
+}
+
+.chatbot-message {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    font-size: 16px;
+    line-height: 18px;
+    border-radius: 5px;
+    word-break: break-all;
+    white-space: pre-wrap;
+    padding: 10px;
+    max-width: 100%;
+}
+
+.chatbot-text {
+    background-color: white;
+    color: #333333;
+    font-size: 1em;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chatbot-reply {
+    justify-content: flex-start;
+    max-width: 70%;
+}
+
+.user-message {
+    justify-content: flex-end;
+    margin-left: 30%;
+}
+
+@media (max-width: 780px) {
+    .chatbot-reply {
+        justify-content: flex-start;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 780px) {
+    .user-message {
+        justify-content: flex-end;
+        margin-left: 0;
+    }
+}
+
+
+.chatbot-reply p[sentTime]:hover::after {  
+    left: 15px;
+/*    padding-top: 3px;*/
+}
+
+.user-message p[sentTime]:hover::after { 
+    font-weight: lighter;
+    right: 15px;
+/*    padding-top: 3px;*/
+}
+
+#chat-form {
+    display: flex;
+/*    margin-top: 10px;*/
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #eef1f5;
+    height: 10%;
+}
+
+message-container {
+    background: #ffffff;
+    width: 98%;
+    height: 92%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+
+#user-input {
+    flex-grow: 1;
+    margin-right: 10px;
+    border-radius: 5px;
+    height: 90%;
+    font-size: 20px;
+    transition: border-color 0.3s;
+    color: black;
+    background: white;
+    border: none;
+}
+
+#user-input:focus {
+    border-color: #333333;
+    outline: none;
+}
+
+#sendicon{
+    background-color: white; /* 或其他適當的背景顏色 */
+    background-image: url('images/send.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    adding-left: 10px;
+    border: none; /* 去除邊框 */
+    width: 40px;  /* 根據您的圖片大小調整 */
+    height: 40px; /* 根據您的圖片大小調整 */
+    cursor: pointer;
+}
+
+p[sentTime]:hover::after {    
+    content: attr(sentTime);
+    position: absolute;
+    padding: 0 45px;
+    top: -8px;
+    font-size: 14px;
+    color: gray;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+}
+
+/* 下拉選單的觸發按鈕 */
+.dropdown-toggle {
+  background-color: #f1f1f1;
+  width: 230px;
+  color: #333;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* 下拉選單內容 */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  width: 230px;
+  z-index: 1;
+}
+
+#dropdownMenu {
+    max-height: 300px;
+    overflow-y: auto; 
+    overflow-x: hidden;
+}
+
+/* 下拉選單選項 */
+.dropdown-menu li {
+  list-style: none;
+  margin: 0px 0;
+}
+
+/* 下拉選單選項的連結樣式 */
+.dropdown-menu li a {
+  display: block;
+  padding: 5px 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+/* 滑鼠移上選項時的樣式 */
+.dropdown-menu li a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown2 {
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+}
+
+/* 下拉選單的觸發按鈕 */
+.dropdown-toggle2 {
+  background-color: #f1f1f1;
+  width: 230px;
+  color: #333;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* 下拉選單內容 */
+.dropdown-menu2 {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  width: 230px;
+  z-index: 1;
+}
+
+/* 下拉選單選項 */
+.dropdown-menu2 li {
+  list-style: none;
+  margin: 0px 0;
+}
+
+/* 下拉選單選項的連結樣式 */
+.dropdown-menu2 li a {
+  display: block;
+  padding: 5px 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+/* 滑鼠移上選項時的樣式 */
+.dropdown-menu2 li a:hover {
+  background-color: #f1f1f1;
+}
+
+button:focus {
+    outline: 0;
+}
+
+  /* width */
+::-webkit-scrollbar {
+    width: 11px;
+}
+  
+  /* Track */
+::-webkit-scrollbar-track {
+    background: var(--scrollbarBG); 
+}
+   
+  /* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG) ;
+  border-radius: 6px;
+  border: 3px solid var(--scrollbarBG);
+}
+  
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+/*.options::-webkit-scrollbar {
+    width: 10px;
+}*/
+
+/* 滾動條的滑塊（拖動部分） */
+/*.options::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    border-radius: 4px;
+}*/
+
+/* 滾動條的滑塊：hover 狀態 */
+/*.options::-webkit-scrollbar-thumb:hover {
+    background: grey;
+}*/
+
+/* 滾動條的軌道 */
+/*.options::-webkit-scrollbar-track {
+    background-color: lightgrey;
+    border-radius: 4px;
+}*/
+
+::selection {
+    background: #4080ff;
+    color: white;
+}
+::-moz-selection {
+    background: #4080ff;
+    color: white;
+}
