@@ -4,3 +4,9 @@
 3.	測試LoRA權重、PtuningV2前綴模型模型加入後是否提升效能。
 4.	利用Django建構成網頁應用程式。
 5.	架一個公司內部網路都能訪問的多裝置自適應知識庫平台。
+   
+1. Utilize the open-source LangChain framework along with the ChatGLM2-6B language model to create a prototype knowledge base platform.
+2. Apply embedding models and custom prompt templates, adjusting text segmentation methods.
+3. Test whether adding LoRA weights and the PtuningV2 prefix model improves performance.
+4. Develop a web application using Django.
+5. Build a multi-device adaptive knowledge base platform accessible across the company's internal network.
