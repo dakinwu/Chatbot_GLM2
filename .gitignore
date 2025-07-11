@@ -1,0 +1,4 @@
+# 忽略知識庫個人與部門資料夾
+chatbot_app/static/knowledge_base/Dakin/
+chatbot_app/static/knowledge_base/OMG/
+chatbot_app/static/knowledge_base/Staff/ 

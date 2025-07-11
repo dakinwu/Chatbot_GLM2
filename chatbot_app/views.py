@@ -20,7 +20,7 @@ def chatbot(request):
     if request.method == 'POST':
         # Get user input
         user_input = request.POST['user_input']
-        url = "http://192.168.1.103:7860/chat"
+        url = "http://192.168.1.106:7860/chat"
         try:
             his = []
             with open(filepath, 'r', encoding='utf-8') as file:
@@ -44,14 +44,14 @@ def chatbot(request):
     else:
         if os.path.exists(filepath):
             os.remove(filepath)
-        url = "http://192.168.1.103:7860/local_doc_qa/list_knowledge_base"
+        url = "http://192.168.1.106:7860/local_doc_qa/list_knowledge_base"
         knowledge_base_list = requests.get(url)
         knowledge_base_list = json.loads(knowledge_base_list.text)["data"]
         # If the request is not a POST, render the chatbot template
         return render(request, 'chatbot.html', locals())
 
 def knowledge_base(request):
-    url = "http://192.168.1.103:7860/local_doc_qa/list_knowledge_base"
+    url = "http://192.168.1.106:7860/local_doc_qa/list_knowledge_base"
     bot_response = requests.get(url)
     bot_response = json.loads(bot_response.text)["data"]
     # Return the response as JSON
@@ -65,7 +65,7 @@ def knowledge_chat(request, knowledge_base):
     show_file_upload = True
     if request.method == 'POST':
         user_input = request.POST['user_input']
-        url = "http://192.168.1.103:7860/local_doc_qa/list_files?knowledge_base_id=" + knowledge_base
+        url = "http://192.168.1.106:7860/local_doc_qa/list_files?knowledge_base_id=" + knowledge_base
         data_list = requests.get(url)
         data_list = json.loads(data_list.text)["data"]
         if data_list == []:
@@ -77,7 +77,7 @@ def knowledge_chat(request, knowledge_base):
             if request.method == 'POST':
                 # Get user input
                 user_input = request.POST['user_input']
-                url = "http://192.168.1.103:7860/chat"
+                url = "http://192.168.1.106:7860/chat"
                 try:
                     his = []
                     with open(filepath, 'r', encoding='utf-8') as file:
@@ -101,13 +101,13 @@ def knowledge_chat(request, knowledge_base):
             else:
                 if os.path.exists(filepath):
                     os.remove(filepath)
-                url = "http://192.168.1.103:7860/local_doc_qa/list_knowledge_base"
+                url = "http://192.168.1.106:7860/local_doc_qa/list_knowledge_base"
                 knowledge_base_list = requests.get(url)
                 knowledge_base_list = json.loads(knowledge_base_list.text)["data"]
                 # If the request is not a POST, render the chatbot template
                 return render(request, 'chatbot.html', locals())
         else:
-            know = "http://192.168.1.103:7860/local_doc_qa/local_doc_chat"
+            know = "http://192.168.1.106:7860/local_doc_qa/local_doc_chat"
             # today = datetime.date.today()
             # filename = today.strftime('%Y-%m-%d') + '.json'
             # try:
@@ -137,10 +137,10 @@ def knowledge_chat(request, knowledge_base):
             else:
                 return JsonResponse({'bot_response': bot_response, "source" : "\n資料來源："+src})
     else:
-        url = "http://192.168.1.103:7860/local_doc_qa/list_knowledge_base"
+        url = "http://192.168.1.106:7860/local_doc_qa/list_knowledge_base"
         knowledge_base_list = requests.get(url)
         knowledge_base_list = json.loads(knowledge_base_list.text)["data"]
-        url = "http://192.168.1.103:7860/local_doc_qa/list_files?knowledge_base_id=" + knowledge_base
+        url = "http://192.168.1.106:7860/local_doc_qa/list_files?knowledge_base_id=" + knowledge_base
         data_list = requests.get(url)
         data_list = json.loads(data_list.text)["data"]
         return render(request, 'chatbot.html', locals())
@@ -163,12 +163,12 @@ def upload_files(request, knowledge_base):
                 name_without_extension = os.path.splitext(i.name)[0]
                 url_name = quote(name_without_extension)
                 extension = os.path.splitext(i.name)[1]
-                url = "http://192.168.1.103:7860/local_doc_qa/delete_file?knowledge_base_id="+knowledge_base+"&doc_name="+url_name+extension
+                url = "http://192.168.1.106:7860/local_doc_qa/delete_file?knowledge_base_id="+knowledge_base+"&doc_name="+url_name+extension
                 deleted = requests.delete(url)
                 # deleted = json.loads(deleted.text)["msg"]
         files = [('files', file) for file in uploaded_files]
         data = {"knowledge_base_id": knowledge_base}
-        url = "http://192.168.1.103:7860/local_doc_qa/upload_files"
+        url = "http://192.168.1.106:7860/local_doc_qa/upload_files"
         uploaded = requests.post(url, files = files, data = data)
         # uploaded = json.loads(uploaded.text)["msg"]
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
@@ -182,7 +182,7 @@ def delete_files(request, knowledge_base):
             name_without_extension = os.path.splitext(file)[0]
             url_name = quote(name_without_extension)
             extension = os.path.splitext(file)[1]
-            url = "http://192.168.1.103:7860/local_doc_qa/delete_file?knowledge_base_id="+knowledge_base+"&doc_name="+url_name+extension
+            url = "http://192.168.1.106:7860/local_doc_qa/delete_file?knowledge_base_id="+knowledge_base+"&doc_name="+url_name+extension
             deleted = requests.delete(url)
             deleted = json.loads(deleted.text)["msg"]
         # messages.success(request, deleted)
@@ -192,7 +192,7 @@ def delete_files(request, knowledge_base):
 
 def delete_base(request, knowledge_base):
     if request.method == 'POST':
-        url = "http://192.168.1.103:7860/local_doc_qa/delete_knowledge_base?knowledge_base_id="+knowledge_base
+        url = "http://192.168.1.106:7860/local_doc_qa/delete_knowledge_base?knowledge_base_id="+knowledge_base
         deleted = requests.delete(url)
         deleted = json.loads(deleted.text)["msg"]
         return HttpResponseRedirect(reverse('chatbot'))
