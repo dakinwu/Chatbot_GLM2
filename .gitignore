@@ -3,3 +3,5 @@ chatbot_app/static/knowledge_base/Dakin/
 chatbot_app/static/knowledge_base/OMG/
 chatbot_app/static/knowledge_base/Staff/
 chatbot_app/static/knowledge_base/Intern/
+
+db.sqlite3
